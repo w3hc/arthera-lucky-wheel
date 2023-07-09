@@ -1,5 +1,9 @@
 # Arthera Lucky Wheel
 
+Spin the wheel and get some AA.
+
+Live at [https://arthera-lucky-wheel.on.fleek.co/](https://arthera-lucky-wheel.on.fleek.co/)
+
 ## Install
 
 ```bash
@@ -15,7 +19,6 @@ npm run dev
 ## Supported Networks
 
 - Arthera Testnet
-- Goerli
 
 ## Versions
 

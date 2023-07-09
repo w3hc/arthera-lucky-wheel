@@ -3,7 +3,7 @@ import { Chain, goerli } from '@wagmi/chains'
 
 export const SITE_NAME = 'Arthera Lucky Wheel'
 export const SITE_DESCRIPTION = 'Spin the wheel and get some AA'
-export const SITE_URL = 'https://w3hc.org'
+export const SITE_URL = 'https://arthera-lucky-wheel.on.fleek.co/'
 export const THEME_INITIAL_COLOR = 'dark'
 export const THEME_COLOR_SCHEME: ThemingProps['colorScheme'] = 'gray'
 export const THEME_CONFIG = {
