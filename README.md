@@ -12,10 +12,12 @@ npm i
 npm run dev
 ```
 
-## Versions
+## Supported Networks
 
-- Node v18.16.0
-- NPM v9.7.2
+- Arthera Testnet
+- Goerli
+
+## Versions
 
 - Node [v18.16.0](https://nodejs.org/uk/blog/release/v18.16.0/)
 - NPM [v9.7.2](https://github.com/npm/cli/releases/tag/v9.7.2)
