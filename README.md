@@ -1,28 +1,25 @@
-# Another Star
-
-This repo was forked from [Nexth](https://github.com/wslyvh/nexth).
-
-It's a Web3 app boilerplate built with Next.js, Chakra UI, Ethers, Wagmi and ConnectKit.
-
-- Netlify: [https://another-star.netlify.app/](https://another-star.netlify.app/)
-- IPFS: [https://bafybeiaadcgdrw5pulupdykl4bmxayzx3yfqiipy73nvh5rf3rgtun47um.ipfs.w3s.link](https://bafybeiaadcgdrw5pulupdykl4bmxayzx3yfqiipy73nvh5rf3rgtun47um.ipfs.w3s.link)
+# Arthera Lucky Wheel
 
 ## Install
 
-```sh
+```bash
 npm i
 ```
 
 ## Run
 
-```sh
+```bash
 npm run dev
 ```
 
-## Support
+## Versions
 
-You can contact me via [Element](https://matrix.to/#/@julienbrg:matrix.org), [Telegram](https://t.me/julienbrg), [Twitter](https://twitter.com/julienbrg), [Discord](https://discord.gg/bHKJV3NWUQ), or [LinkedIn](https://www.linkedin.com/in/julienberanger/).
+- Node v18.16.0
+- NPM v9.7.2
 
-## License
+- Node [v18.16.0](https://nodejs.org/uk/blog/release/v18.16.0/)
+- NPM [v9.7.2](https://github.com/npm/cli/releases/tag/v9.7.2)
 
-[GPL-3.0](https://github.com/w3hc/w3hc-web/blob/main/LICENSE)
+## Contact
+
+You can contact me via [Element](https://matrix.to/#/@julienbrg:matrix.org), [Telegram](https://t.me/julienbrg), [Twitter](https://twitter.com/julienbrg), [Discord](https://discord.com/invite/uSxzJp3J76), or [LinkedIn](https://www.linkedin.com/in/julienberanger/).
