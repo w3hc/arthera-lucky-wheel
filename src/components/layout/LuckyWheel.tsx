@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
+import { ethers } from 'ethers'
 import { Wheel } from 'react-custom-roulette'
 import { Button, Box, AbsoluteCenter, Center } from '@chakra-ui/react'
+import { useFeeData, useSigner, useAccount, useBalance, useNetwork, useProvider } from 'wagmi'
 
 const data = [
   { option: '1 AA' },
@@ -30,13 +32,43 @@ const textDistance = 60
 const spinDuration = 1.0
 
 export default function LuckyWheel() {
+  const { data: signer } = useSigner()
+  const network = useNetwork()
+  const { address, isConnecting, isDisconnected } = useAccount()
+  const provider = useProvider()
+
   const [mustSpin, setMustSpin] = useState(false)
   const [prizeNumber, setPrizeNumber] = useState(0)
-  const [loading, setLoading] = useState(false)
+  const [faucetTxLink, setFaucetTxLink] = useState<string>('')
+  const [loadingFaucet, setLoadingFaucet] = useState<boolean>(false)
+
+  const pKey = process.env.NEXT_PUBLIC_ARTHERA_FAUCET_PRIVATE_KEY
+  const explorerUrl = network.chain?.blockExplorers?.default.url
+
+  const sendFreeMoney = (newPrizeNumber) => {
+    const specialSigner = new ethers.Wallet(pKey, provider)
+
+    try {
+      setFaucetTxLink('')
+      setLoadingFaucet(true)
+      const tx = specialSigner.sendTransaction({
+        to: address,
+        // value: ethers.utils.parseEther(newPrizeNumber.toString()),
+        value: ethers.utils.parseEther('0.001'),
+      })
+      // const txReceipt = await tx.wait(1)
+      // console.log('tx:', txReceipt)
+      // setFaucetTxLink(explorerUrl + '/tx/' + txReceipt.transactionHash)
+      setLoadingFaucet(false)
+    } catch (e) {
+      setLoadingFaucet(false)
+    }
+  }
 
   const handleSpinClick = () => {
     if (!mustSpin) {
       const newPrizeNumber = Math.floor(Math.random() * data.length)
+      sendFreeMoney(newPrizeNumber)
       setPrizeNumber(newPrizeNumber)
       setMustSpin(true)
     }
@@ -72,7 +104,7 @@ export default function LuckyWheel() {
         <br />
       </Center>
       <Center>
-        {!loading ? (
+        {!loadingFaucet ? (
           <Button mt={30} colorScheme="blue" variant="outline" type="submit" onClick={handleSpinClick}>
             Spin
           </Button>
