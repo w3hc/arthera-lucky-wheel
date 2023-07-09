@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
 import { Wheel } from 'react-custom-roulette'
-import { Button, Box, AbsoluteCenter, Center } from '@chakra-ui/react'
+import { Button, Box, AbsoluteCenter, Center, useToast } from '@chakra-ui/react'
 import { useFeeData, useSigner, useAccount, useBalance, useNetwork, useProvider } from 'wagmi'
 
 const data = [
@@ -42,6 +42,8 @@ export default function LuckyWheel() {
   const [faucetTxLink, setFaucetTxLink] = useState<string>('')
   const [loadingFaucet, setLoadingFaucet] = useState<boolean>(false)
 
+  const toast = useToast()
+
   const pKey = process.env.NEXT_PUBLIC_ARTHERA_FAUCET_PRIVATE_KEY
   const explorerUrl = network.chain?.blockExplorers?.default.url
 
@@ -66,6 +68,18 @@ export default function LuckyWheel() {
   }
 
   const handleSpinClick = () => {
+    console.log('isDisconnected:', isDisconnected)
+    if (isDisconnected) {
+      toast({
+        title: 'Disconnected',
+        description: 'Please connect your wallet first. We need to know your wallet address to send you the AA tokens in case you win.',
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+      })
+      setLoadingFaucet(false)
+      return
+    }
     if (!mustSpin) {
       const newPrizeNumber = Math.floor(Math.random() * data.length)
       sendFreeMoney(newPrizeNumber)
