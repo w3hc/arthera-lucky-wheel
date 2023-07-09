@@ -8,6 +8,8 @@ import { ethers } from 'ethers'
 import { NFT_CONTRACT_ADDRESS, NFT_CONTRACT_ABI } from '../lib/consts'
 import useSound from 'use-sound' // https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/
 const stevie = 'https://bafybeicxvrehw23nzkwjcxvsytimqj2wos7dhh4evrv5kscbbj6agilcsy.ipfs.w3s.link/another-star.mp3'
+import dynamic from 'next/dynamic'
+const LuckyWheel = dynamic(() => import('../components/layout/LuckyWheel'), { ssr: false })
 
 export default function Home() {
   const [loading, setLoading] = useState<boolean>(false)
@@ -66,65 +68,7 @@ export default function Home() {
       <Head />
 
       <main>
-        <Heading as="h2">Basic Minter</Heading>
-        <br />
-        <p>Welcome to Basic Minter!</p>
-
-        {isDisconnected ? (
-          <>
-            <br />
-            <p>Please connect your wallet if you want to mint.</p>
-          </>
-        ) : (
-          <>
-            <br />
-
-            <p>You&apos;re about to mint 1 NFT on Ethereum Goerli Testnet.</p>
-            <br />
-            <p>
-              You&apos;re connected to <strong>Ethereum Goerli Testnet</strong> and your wallet currently holds
-              <strong> {userBal}</strong>. You can go ahead and click on the &apos;Mint&apos; button below: you will be invited to sign your
-              transaction.{' '}
-            </p>
-          </>
-        )}
-
-        <br />
-        {!loading ? (
-          !txLink ? (
-            <Button colorScheme="green" variant="outline" onClick={mint}>
-              Mint
-            </Button>
-          ) : (
-            <Button disabled colorScheme="green" variant="outline" onClick={mint}>
-              Mint
-            </Button>
-          )
-        ) : (
-          <Button isLoading colorScheme="green" loadingText="Minting" variant="outline">
-            Mint
-          </Button>
-        )}
-
-        {txLink && (
-          <>
-            <br />
-            <br />
-            <p>Done! You can view your transaction on Etherscan:</p>
-            <br />
-            <LinkComponent target="blank" href={txLink}>
-              {txLink}
-            </LinkComponent>
-          </>
-        )}
-        <br />
-        <br />
-        {txLink && (
-          <Button colorScheme="red" variant="outline" onClick={() => stop()}>
-            Stop the music
-          </Button>
-        )}
-        {/* <Image height="800" width="800" alt="contract-image" src="/thistle-contract-feb-15-2023.png" /> */}
+        <LuckyWheel />
       </main>
     </>
   )
